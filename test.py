@@ -4,11 +4,11 @@ import tensorflow as tf
 import pickle
 from collections import deque
 
-frames_totales = 30
-video_size = 64
-modelo_path = "modelo_cnn2d_lstm_30_64.keras"
+frames_totales = 60
+video_size = 96
+modelo_path = "modelo_cnn2d_lstm_30_96.keras"
 encoder_path = "label_encoder.pkl"
-frecuencia_prediccion = 30  
+frecuencia_prediccion = 60  
 
 model = tf.keras.models.load_model(modelo_path)
 with open(encoder_path, "rb") as f:

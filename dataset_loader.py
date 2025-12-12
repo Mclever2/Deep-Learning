@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import pickle
 
-def cargar_video(path, frames_totales=30, video_size=64):
+def cargar_video(path, frames_totales=60, video_size=96):
     cap = cv2.VideoCapture(path)
     frames = []
 
@@ -14,7 +14,7 @@ def cargar_video(path, frames_totales=30, video_size=64):
             break
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = cv2.resize(frame, (video_size, video_size))
-        frame = frame.astype(np.float32) / 255.0
+        frame = (frame / 255.0).astype(np.float16)
         frames.append(frame)
 
     cap.release()
@@ -22,7 +22,7 @@ def cargar_video(path, frames_totales=30, video_size=64):
     if len(frames) != frames_totales:
         return None
 
-    return np.array(frames)
+    return np.array(frames, dtype=np.float16)
 
 def cargar_dataset(dataset_path, frames_totales=60, video_size=96):
     X = []
@@ -49,4 +49,4 @@ def cargar_dataset(dataset_path, frames_totales=60, video_size=96):
     with open("label_encoder.pkl", "wb") as f:
         pickle.dump(le, f)
 
-    return np.array(X), y, rutas, le
+    return np.array(X, dtype=np.float16), y, rutas, le
