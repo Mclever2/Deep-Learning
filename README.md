@@ -23,7 +23,7 @@ https://github.com/Mclever2/Deep-Learning.git
 
 ### 2️. Crear y activar el entorno virtual
 
-python -m venv venv
+py -3.10 -m venv venv_gpu
 venv\Scripts\activate
 
 ### 3️. Instalar dependencias

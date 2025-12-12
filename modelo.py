@@ -29,12 +29,10 @@ def crear_modelo_cnn2d_lstm(input_shape, num_clases):
 
     return model
 
-
-def entrenar_modelo(model, X_train, y_train, X_val, y_val, epochs=4, batch_size=8):
+def entrenar_modelo(model, train_dataset, val_dataset, epochs=6):
     history = model.fit(
-        X_train, y_train,
-        validation_data=(X_val, y_val),
-        epochs=epochs,
-        batch_size=batch_size
+        train_dataset,
+        validation_data=val_dataset,
+        epochs=epochs
     )
     return history
